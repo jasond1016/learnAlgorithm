@@ -1,3 +1,5 @@
+package linkedlist;
+
 class JosephQuiz {
     public static void main(String[] args) {
         int total = 10;
@@ -57,7 +59,7 @@ class JosephQuiz {
     }
 }
 
-public class Node {
+class Node {
     int value;
     Node next;
 

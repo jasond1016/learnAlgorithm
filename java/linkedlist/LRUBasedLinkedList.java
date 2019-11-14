@@ -1,3 +1,5 @@
+package linkedlist;
+
 class LRUBasedLinkedList<T> {
 
     private static Integer DEFAULT_CAPACITY = 10;

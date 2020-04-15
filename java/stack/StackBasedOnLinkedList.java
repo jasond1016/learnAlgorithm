@@ -6,6 +6,16 @@ package stack;
  */
 public class StackBasedOnLinkedList {
     private Node top;
+    private int size;
+
+    public StackBasedOnLinkedList() {
+        this.size = 0;
+    }
+
+    public StackBasedOnLinkedList(String data) {
+        this.top = new Node(data);
+        this.size++;
+    }
 
     void push(String data) {
         Node newNode = new Node(data);
@@ -15,6 +25,7 @@ public class StackBasedOnLinkedList {
             newNode.next = top;
             top = newNode;
         }
+        this.size++;
     }
 
     String pop() {
@@ -23,11 +34,29 @@ public class StackBasedOnLinkedList {
         }
         String data = this.top.data;
         top = top.next;
+        this.size--;
         return data;
+    }
+
+    String peek() {
+        if (top == null) {
+            return null;
+        }
+        return this.top.data;
+    }
+
+    int size() {
+        return this.size;
+    }
+
+    void clear() {
+        this.top = null;
+        this.size = 0;
     }
 
     void printAll() {
         System.out.println("==start==");
+        System.out.println("size: " + this.size);
         Node p = top;
         if (p == null) {
             System.out.println("nothing here.");

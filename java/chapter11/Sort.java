@@ -7,7 +7,9 @@ public class Sort {
         System.out.println("before: " + arrayToString(array));
 //        bubbleSort(array, array.length);
 //        System.out.println("bubble sort : " + arrayToString(array));
-        insertionSort(array, array.length);
+//        insertionSort(array, array.length);
+//        System.out.println("insertion sort : " + arrayToString(array));
+        selectionSort(array, array.length);
         System.out.println("insertion sort : " + arrayToString(array));
     }
 
@@ -48,6 +50,24 @@ public class Sort {
                 }
             }
             array[j + 1] = value;
+        }
+    }
+
+    public static void selectionSort(int[] array, int n) {
+        if (n <= 1) {
+            return;
+        }
+
+        for (int i = 0; i < n; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int temp = array[i];
+            array[i] = array[minIndex];
+            array[minIndex] = temp;
         }
     }
 

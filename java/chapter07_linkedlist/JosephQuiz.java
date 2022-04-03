@@ -1,4 +1,4 @@
-package linkedlist;
+package chapter07_linkedlist;
 
 class JosephQuiz {
     public static void main(String[] args) {

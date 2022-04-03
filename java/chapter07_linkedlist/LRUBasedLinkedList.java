@@ -1,4 +1,4 @@
-package linkedlist;
+package chapter07_linkedlist;
 
 import java.util.Scanner;
 

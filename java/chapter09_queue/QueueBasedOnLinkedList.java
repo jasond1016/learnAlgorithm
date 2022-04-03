@@ -1,58 +1,54 @@
-package queue;
+package chapter09_queue;
 
 /**
- * 基于数组实现的循环队列
+ * 基于链表实现的链式队列
  *
  * @author Jason
  * @date 2020/4/15
  */
-public class CircularQueue {
-    private String[] items;
-    private int head;
-    private int tail;
-    private int capacity;
+public class QueueBasedOnLinkedList {
+    private Node headNode;
+    private Node tailNode;
 
-    public CircularQueue(int capacity) {
-        this.capacity = capacity;
-        items = new String[capacity];
-        head = 0;
-        tail = 0;
-    }
-
-    public boolean enqueue(String data) {
-        if ((tail + 1) % capacity == head) {
-            System.out.println("queue is full.");
-            return false;
+    public void enqueue(String data) {
+        Node newNode = new Node(data);
+        if (headNode == null) {
+            headNode = newNode;
+            tailNode = headNode;
+            return;
         }
-        items[tail] = data;
-        tail = (tail + 1) % capacity;
-        return true;
+        tailNode.next = newNode;
+        tailNode = tailNode.next;
     }
 
     public String dequeue() {
-        if (head == tail) {
+        if (headNode == null) {
             System.out.println("queue is empty.");
             return null;
         }
-        String data = items[head];
-        head = (head + 1) % capacity;
+        String data = headNode.data;
+        headNode = headNode.next;
         return data;
     }
 
     public void printAll() {
         System.out.println("==start==");
-        int p = head;
-        for (int i = head; i % capacity != tail; i++) {
-            System.out.print(items[i % capacity] + " ");
+        Node tmp = headNode;
+        while (tmp != null) {
+            System.out.print(tmp.data + " ");
+            tmp = tmp.next;
         }
         System.out.println();
         System.out.println("===end===");
     }
 
     public static void main(String[] args) {
-        CircularQueue queue = new CircularQueue(0);
+        QueueBasedOnLinkedList queue = new QueueBasedOnLinkedList();
         queue.printAll();
+        queue.dequeue();
         queue.enqueue("1");
+        queue.printAll();
+        queue.dequeue();
         queue.printAll();
         queue.enqueue("2");
         queue.printAll();
@@ -80,6 +76,15 @@ public class CircularQueue {
         queue.printAll();
         System.out.println(queue.dequeue());
         queue.printAll();
-        System.out.println(queue.dequeue());
+    }
+
+    class Node {
+        private String data;
+        private Node next;
+
+        public Node(String data) {
+            this.data = data;
+        }
+
     }
 }

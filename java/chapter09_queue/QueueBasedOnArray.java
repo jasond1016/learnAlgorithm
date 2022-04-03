@@ -1,4 +1,4 @@
-package queue;
+package chapter09_queue;
 
 /**
  * 基于数组实现的顺序队列

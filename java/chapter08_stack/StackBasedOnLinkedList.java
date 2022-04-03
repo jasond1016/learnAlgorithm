@@ -1,4 +1,4 @@
-package stack;
+package chapter08_stack;
 
 /**
  * @author Jason

@@ -5,8 +5,10 @@ public class Sort {
     public static void main(String[] args) {
         int[] array = new int[]{3, 5, 4, 1, 2, 6};
         System.out.println("before: " + arrayToString(array));
-        bubbleSort(array, array.length);
-        System.out.println("after : " + arrayToString(array));
+//        bubbleSort(array, array.length);
+//        System.out.println("bubble sort : " + arrayToString(array));
+        insertionSort(array, array.length);
+        System.out.println("insertion sort : " + arrayToString(array));
     }
 
     public static void bubbleSort(int[] array, int n) {
@@ -27,6 +29,25 @@ public class Sort {
                 break;
             }
 
+        }
+    }
+
+    public static void insertionSort(int[] array, int n) {
+        if (n <= 1) {
+            return;
+        }
+
+        for (int i = 1; i < n; i++) {
+            int j = i - 1;
+            int value = array[i];
+            for (; j >= 0; j--) {
+                if (array[j] > value) {
+                    array[j + 1] = array[j];
+                } else {
+                    break;
+                }
+            }
+            array[j + 1] = value;
         }
     }
 

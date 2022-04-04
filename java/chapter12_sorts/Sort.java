@@ -5,10 +5,16 @@ public class Sort {
     public static void main(String[] args) {
         int[] array = new int[]{1, 5, 6, 2, 3, 4};
         System.out.println("before: " + arrayToString(array));
-//        mergeSort(array, array.length);
-//        System.out.println("merge sort : " + arrayToString(array));
-        quickSort(array, array.length);
-        System.out.println("quick sort : " + arrayToString(array));
+        mergeSort(array, array.length);
+        System.out.println("merge sort : " + arrayToString(array));
+
+        int[] array1 = new int[]{1, 5, 6, 2, 3, 4};
+        System.out.println("before: " + arrayToString(array1));
+        quickSort(array1, array1.length);
+        System.out.println("quick sort : " + arrayToString(array1));
+
+        int[] array2 = new int[]{6, 1, 3, 5, 7, 2, 4, 9, 11, 8};
+        System.out.println(findKthNumber(3, array2, array2.length));
     }
 
     public static void mergeSort(int[] a, int n) {
@@ -77,7 +83,7 @@ public class Sort {
         int pivot = array[r];
         int i = p;
         for (int j = p; j <= r - 1; j++) {
-            if (array[j] < pivot) {
+            if (array[j] > pivot) {
                 swap(array, i, j);
                 i++;
             }
@@ -90,6 +96,26 @@ public class Sort {
         int temp = array[from];
         array[from] = array[to];
         array[to] = temp;
+    }
+
+    public static int findKthNumber(int k, int[] array, int n) {
+        int index = findKthNumberC(k, array, 0, n - 1);
+        return array[index];
+    }
+
+    private static int findKthNumberC(int k, int[] array, int p, int r) {
+//        if (p >= r) {
+//            return;
+//        }
+        //获取分区点
+        int q = partition(array, p, r);
+        if (q + 1 == k) {
+            return q;
+        } else if (q + 1 > k) {
+            return findKthNumberC(k, array, p, q - 1);
+        } else {
+            return findKthNumberC(k, array, q, r);
+        }
     }
 
     private static String arrayToString(int[] array) {

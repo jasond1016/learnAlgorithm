@@ -5,8 +5,10 @@ public class Sort {
     public static void main(String[] args) {
         int[] array = new int[]{1, 5, 6, 2, 3, 4};
         System.out.println("before: " + arrayToString(array));
-        mergeSort(array, array.length);
-        System.out.println("merge sort : " + arrayToString(array));
+//        mergeSort(array, array.length);
+//        System.out.println("merge sort : " + arrayToString(array));
+        quickSort(array, array.length);
+        System.out.println("quick sort : " + arrayToString(array));
     }
 
     public static void mergeSort(int[] a, int n) {
@@ -54,6 +56,40 @@ public class Sort {
             sourceArray[p + i] = temp[i];
         }
 
+    }
+
+    public static void quickSort(int[] array, int n) {
+        quickSortC(array, 0, n - 1);
+    }
+
+    private static void quickSortC(int[] array, int p, int r) {
+        if (p >= r) {
+            return;
+        }
+
+        //获取分区点
+        int q = partition(array, p, r);
+        quickSortC(array, p, q - 1);
+        quickSortC(array, q, r);
+    }
+
+    private static int partition(int[] array, int p, int r) {
+        int pivot = array[r];
+        int i = p;
+        for (int j = p; j <= r - 1; j++) {
+            if (array[j] < pivot) {
+                swap(array, i, j);
+                i++;
+            }
+        }
+        swap(array, i, r);
+        return i;
+    }
+
+    private static void swap(int[] array, int from, int to) {
+        int temp = array[from];
+        array[from] = array[to];
+        array[to] = temp;
     }
 
     private static String arrayToString(int[] array) {

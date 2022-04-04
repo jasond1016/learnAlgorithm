@@ -1,4 +1,4 @@
-package recursion;
+package chapter10_recursion;
 
 /**
  * @author Jason

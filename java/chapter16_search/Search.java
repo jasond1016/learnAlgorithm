@@ -9,6 +9,7 @@ public class Search {
         System.out.println(binarySearch3(array, array.length, 8)); // 7
         System.out.println(binarySearch4(array, array.length, 8)); // 5
         System.out.println(binarySearch5(array, array.length, 9)); // 7
+        System.out.println(search(new int[]{4,5,6,7,0,1,2}, 0)); // 4
     }
 
     // 查找第一个值等于给定值的元素 方法1
@@ -113,6 +114,35 @@ public class Search {
             }
         }
 
+        return -1;
+    }
+
+    // leetcode 33. Search in Rotated Sorted Array
+    public static int search(int[] nums, int target) {
+        int n = nums.length;
+        int low = 0;
+        int high = n - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else {
+                if (nums[mid] < nums[high]) {
+                    if (target < nums[mid] || target > nums[high]) {
+                        high = mid - 1;
+                    } else {
+                        low = mid + 1;
+                    }
+                } else {
+                    if (target > nums[mid] || target < nums[low]) {
+                        low = mid + 1;
+                    } else {
+                        high = mid - 1;
+                    }
+                }
+            }
+        }
         return -1;
     }
 }

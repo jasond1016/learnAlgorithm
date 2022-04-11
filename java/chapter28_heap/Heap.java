@@ -37,7 +37,22 @@ public class Heap {
         heapify(this.a, this.count, 1);
     }
 
-    private void heapify(int[] a, int count, int i) {
+    private static void buildHeap(int[] a, int count) {
+        for (int i = count / 2; i >= 1; i--) {
+            heapify(a, count, i);
+        }
+    }
+
+    public static void sort(int[] a, int count) {
+        buildHeap(a, count);
+        while (count > 1) {
+            swap(a, 1, count);
+            count--;
+            heapify(a, count, 1);
+        }
+    }
+
+    private static void heapify(int[] a, int count, int i) {
         while (true) {
             if (i * 2 <= count && a[i] < a[i * 2]) {
                 swap(a, i, i * 2);
@@ -51,7 +66,7 @@ public class Heap {
         }
     }
 
-    private void swap(int[] a, int i, int j) {
+    private static void swap(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;

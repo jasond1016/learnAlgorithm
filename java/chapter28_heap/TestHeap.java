@@ -26,5 +26,21 @@ public class TestHeap {
         System.out.println(heap);
         heap.insert(3);
         System.out.println(heap);
+
+        int[] unsortedArray = new int[]{0, 9, 6, 3, 1, -1};
+        System.out.println(arrayToString(unsortedArray));
+        Heap.sort(unsortedArray, unsortedArray.length - 1);
+        System.out.println(arrayToString(unsortedArray));
+    }
+
+    private static String arrayToString(int[] array) {
+        StringBuilder sb = new StringBuilder();
+        for (int element : array) {
+            sb.append(element).append(", ");
+        }
+        if (sb.length() > 0) {
+            sb.delete(sb.length() - 2, sb.length());
+        }
+        return sb.toString();
     }
 }

@@ -54,15 +54,18 @@ public class Heap {
 
     private static void heapify(int[] a, int count, int i) {
         while (true) {
+            int maxPos = i;
             if (i * 2 <= count && a[i] < a[i * 2]) {
-                swap(a, i, i * 2);
-                i = i * 2;
-            } else if (i * 2 + 1 <= count && a[i] < a[i * 2 + 1]) {
-                swap(a, i, i * 2 + 1);
-                i = i * 2 + 1;
-            } else {
+                maxPos = i * 2;
+            }
+            if (i * 2 + 1 <= count && a[i] < a[i * 2 + 1]) {
+                maxPos = i * 2 + 1;
+            }
+            if (maxPos == i) {
                 break;
             }
+            swap(a, i, maxPos);
+            i = maxPos;
         }
     }
 

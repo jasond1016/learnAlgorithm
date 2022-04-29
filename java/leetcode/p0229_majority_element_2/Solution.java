@@ -14,7 +14,6 @@ public class Solution {
     }
 
     public List<Integer> majorityElement(int[] nums) {
-        Arrays.sort(nums);
         int n = nums.length;
         int limit = n / 3;
         List<Integer> result = new ArrayList<>();

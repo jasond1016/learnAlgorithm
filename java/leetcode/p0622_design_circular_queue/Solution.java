@@ -20,7 +20,7 @@ public class Solution {
 class MyCircularQueue {
     private int[] a;
     private int start;
-    private int end;
+    private int end = -1;
     private int size;
     public MyCircularQueue(int k) {
         a = new int[k];
@@ -30,12 +30,8 @@ class MyCircularQueue {
         if (isFull()) {
             return false;
         }
-        if (end == a.length - 1) {
-            a[end] = value;
-            end = 0;
-        } else {
-            a[end++] = value;
-        }
+        end = (end + 1) % a.length;
+        a[end] = value;
         size++;
         return true;
     }
@@ -44,12 +40,7 @@ class MyCircularQueue {
         if (isEmpty()) {
             return false;
         }
-
-        if (start == a.length - 1) {
-            start = 0;
-        } else {
-            start++;
-        }
+        start = (start + 1) % a.length;
         size--;
         return true;
     }
@@ -59,14 +50,7 @@ class MyCircularQueue {
     }
 
     public int Rear() {
-        if (isEmpty()) {
-            return -1;
-        }
-        if (end == 0) {
-            return a[a.length - 1];
-        } else {
-            return a[end - 1];
-        }
+        return isEmpty() ? -1 : a[end];
     }
 
     public boolean isEmpty() {

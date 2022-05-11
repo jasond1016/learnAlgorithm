@@ -33,4 +33,12 @@ public class Solution {
 
         return (int) Math.floor(attempt);
     }
+
+    public int mySqrt2(int x) {
+        long r = x;
+        while (r * r > x) {
+            r = (r + x / r) / 2;
+        }
+        return (int) r;
+    }
 }

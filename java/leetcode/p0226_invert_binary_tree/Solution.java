@@ -1,7 +1,5 @@
 package leetcode.p0226_invert_binary_tree;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 

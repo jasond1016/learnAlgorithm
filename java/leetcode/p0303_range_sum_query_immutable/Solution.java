@@ -1,4 +1,4 @@
-package leetcode.p303_range_sum_query_immutable;
+package leetcode.p0303_range_sum_query_immutable;
 
 public class Solution {
     public static void main(String[] args) {

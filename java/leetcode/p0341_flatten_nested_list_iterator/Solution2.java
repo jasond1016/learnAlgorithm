@@ -19,8 +19,9 @@ public class Solution2 {
             for (NestedInteger nestedInteger : nestedList) {
                 if (nestedInteger.isInteger()) {
                     result.add(nestedInteger.getInteger());
+                } else {
+                    traverse(nestedInteger.getList(), result);    
                 }
-                traverse(nestedInteger.getList(), result);
             }
         }
 

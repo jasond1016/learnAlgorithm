@@ -32,16 +32,24 @@ public class Solution {
         System.out.println(solution.countNodes(root));
     }
     public int countNodes(TreeNode root) {
-        return traverse(root);
-    }
-
-    private int traverse(TreeNode root) {
-        if (root == null) {
-            return 0;
+        TreeNode l = root;
+        TreeNode r = root;
+        int h1 = 0;
+        int h2 = 0;
+        while (l != null) {
+            l = l.left;
+            h1++;
         }
 
-        int left = traverse(root.left);
-        int right = traverse(root.right);
-        return 1 + left + right;
+        while (r != null) {
+            r = r.right;
+            h2++;
+        }
+
+        if (h1 == h2) {
+            return (int) (Math.pow(2, h1) - 1);
+        }
+        return 1 + countNodes(root.left) + countNodes(root.right);
     }
+
 }

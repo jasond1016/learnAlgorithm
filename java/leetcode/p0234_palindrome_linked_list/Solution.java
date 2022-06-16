@@ -28,19 +28,56 @@ public class Solution {
         
     }
 
-    ListNode left;
+//    ListNode left;
+//    public boolean isPalindrome(ListNode head) {
+//        left = head;
+//        return traverse(head);
+//    }
+//
+//    private boolean traverse(ListNode right) {
+//        if (right == null) {
+//            return true;
+//        }
+//        boolean res = traverse(right.next);
+//        res = res && (left.val == right.val);
+//        left = left.next;
+//        return res;
+//    }
+
     public boolean isPalindrome(ListNode head) {
-        left = head;
-        return traverse(head);
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        ListNode left = head;
+        ListNode right = reverse(slow);
+        while (right != null) {
+            if (left.val != right.val) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
     }
 
-    private boolean traverse(ListNode right) {
-        if (right == null) {
-            return true;
+    private ListNode reverse(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        ListNode nxt = head;
+        while (cur != null) {
+            nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = nxt;
         }
-        boolean res = traverse(right.next);
-        res = res && (left.val == right.val);
-        left = left.next;
-        return res;
+        return pre;
     }
 }

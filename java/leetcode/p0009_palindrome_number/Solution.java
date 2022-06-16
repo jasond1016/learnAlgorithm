@@ -6,8 +6,13 @@ public class Solution {
         System.out.println(solution.isPalindrome(121));
         System.out.println(solution.isPalindrome(-121));
         System.out.println(solution.isPalindrome(10));
-        
+
+        System.out.println(solution.isPalindrome2(121));
+        System.out.println(solution.isPalindrome2(-121));
+        System.out.println(solution.isPalindrome2(10));
+
     }
+
     public boolean isPalindrome(int x) {
         String s = String.valueOf(x);
         int len = s.length();
@@ -24,7 +29,20 @@ public class Solution {
         }
         return true;
     }
-    
-    
-    
+
+    public boolean isPalindrome2(int x) {
+        if (x < 0) {
+            return false;
+        }
+
+        int curr = x;
+        int y = 0;
+        while (Math.abs(curr) > 0) {
+            int mod = curr % 10;
+            y = y * 10 + mod;
+            curr = curr / 10;
+        }
+        return x == y;
+    }
+
 }

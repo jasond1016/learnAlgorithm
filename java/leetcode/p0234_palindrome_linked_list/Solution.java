@@ -58,13 +58,18 @@ public class Solution {
 
         ListNode left = head;
         ListNode right = reverse(slow);
+        ListNode p = null;
+        ListNode q = right;
         while (right != null) {
             if (left.val != right.val) {
                 return false;
             }
+            p = left;
             left = left.next;
             right = right.next;
         }
+
+        p.next = reverse(q);
         return true;
     }
 

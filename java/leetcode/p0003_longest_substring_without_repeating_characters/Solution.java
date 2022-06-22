@@ -10,6 +10,7 @@ public class Solution {
         System.out.println(solution.lengthOfLongestSubstring("bbbbb"));
         System.out.println(solution.lengthOfLongestSubstring("pwwkew"));
     }
+
     public int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> window = new HashMap<>();
         int left = 0;
@@ -22,9 +23,7 @@ public class Solution {
             while (window.get(c) > 1) {
                 char d = s.charAt(left);
                 left++;
-                if (window.containsKey(d)) {
-                    window.put(d, window.get(d) - 1);
-                }
+                window.put(d, window.get(d) - 1);
             }
             res = Math.max(res, right - left);
         }

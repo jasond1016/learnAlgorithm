@@ -20,7 +20,7 @@ public class Solution {
         System.out.println(solution.canFinish(numCourses, prerequisites));
     }
 
-    // 记录遍历过的几点
+    // 记录遍历过的节点
     boolean[] visited;
     // 记录一次递归堆栈中的节点
     boolean[] onPath;

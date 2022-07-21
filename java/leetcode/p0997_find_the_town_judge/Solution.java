@@ -7,14 +7,14 @@ public class Solution {
         int[][] trust = new int[][]{
                 {1, 2}
         };
-        System.out.println(solution.findJudge(n, trust));
+        System.out.println(solution.findJudge3(n, trust)); // 2
 
         n = 3;
         trust = new int[][]{
                 {1, 3},
                 {2, 3}
         };
-        System.out.println(solution.findJudge(n, trust));
+        System.out.println(solution.findJudge3(n, trust)); // 3
 
         n = 3;
         trust = new int[][]{
@@ -22,7 +22,43 @@ public class Solution {
                 {2, 3},
                 {3, 1}
         };
-        System.out.println(solution.findJudge(n, trust));
+        System.out.println(solution.findJudge3(n, trust)); // -1
+    }
+
+    public int findJudge2(int n, int[][] trust) {
+        // inOutDegrees[i][0]表示入度，inOutDegrees[i][1]表示出度
+        int[][] inOutDegrees = new int[n + 1][2];
+        for (int[] arr : trust) {
+            inOutDegrees[arr[0]][1]++;
+            inOutDegrees[arr[1]][0]++;
+        }
+
+        for (int i = 1; i < n + 1; i++) {
+            // 入度为n-1，出度为0则是法官
+            if (inOutDegrees[i][0] == n - 1 && inOutDegrees[i][1] == 0) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public int findJudge3(int n, int[][] trust) {
+        // inOutDegrees[i]表示入度-出度
+        int[] count = new int[n + 1];
+        for (int[] arr : trust) {
+            count[arr[0]]--;
+            count[arr[1]]++;
+        }
+
+        for (int i = 1; i < n + 1; i++) {
+            // 入度-出度 == n-1，则是法官
+            if (count[i] == n - 1) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     // graph[i][j] == 1 时表示 i trust j

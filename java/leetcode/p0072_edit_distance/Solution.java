@@ -1,5 +1,7 @@
 package leetcode.p0072_edit_distance;
 
+import java.util.Arrays;
+
 public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
@@ -7,9 +9,16 @@ public class Solution {
         System.out.println(solution.minDistance("intention", "execution")); // 5
     }
 
+    private int[][] memo;
+
     public int minDistance(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
+        memo = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            Arrays.fill(memo[i], -1);
+        }
+
         return dp(word1, m - 1, word2, n - 1);
     }
 
@@ -22,11 +31,15 @@ public class Solution {
             return i + 1;
         }
 
+        if (memo[i][j] != -1) {
+            return memo[i][j];
+        }
+
         if (s1.charAt(i) == s2.charAt(j)) {
             // skip
-            return dp(s1, i - 1, s2, j - 1);
+            memo[i][j] = dp(s1, i - 1, s2, j - 1);
         } else {
-            return Math.min(
+            memo[i][j] = Math.min(
                     Math.min(
                             // 替换
                             1 + dp(s1, i - 1, s2, j - 1),
@@ -35,5 +48,6 @@ public class Solution {
                     // 删除
                     1 + dp(s1, i - 1, s2, j));
         }
+        return memo[i][j];
     }
 }

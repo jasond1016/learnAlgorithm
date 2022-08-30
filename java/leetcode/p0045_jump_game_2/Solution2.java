@@ -17,13 +17,13 @@ public class Solution2 {
 
     public int jump(int[] nums) {
         int n = nums.length;
+        // farthest 是 i ~ end 之间能跳的最远距离，res记录了跳跃次数
         int farthest = 0;
         int end = 0;
         int res = 0;
         for (int i = 0; i < n - 1; i++) {
             farthest = Math.max(farthest, nums[i] + i);
             if (end == i) {
-                // 只关心跳的最远的
                 res++;
                 end = farthest;
             }

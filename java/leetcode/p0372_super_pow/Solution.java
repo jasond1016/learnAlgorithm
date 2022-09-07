@@ -32,7 +32,7 @@ public class Solution {
     /**
      * return x^y % BASE
      */
-    private int myPow(int x, int y) {
+    private int myPow2(int x, int y) {
         x %= BASE;
         int res = 1;
         for (int i = 0; i < y; i++) {
@@ -40,5 +40,22 @@ public class Solution {
             res %= BASE;
         }
         return res;
+    }
+
+    private int myPow(int x, int y) {
+        if (y == 0) {
+            return 1;
+        }
+
+        x %= BASE;
+
+        if (y % 2 == 1) {
+            // 奇数幂
+            return (x * myPow(x, y - 1)) % BASE;
+        } else {
+            // 偶数幂
+            int sub = myPow(x, y / 2);
+            return (sub * sub) % BASE;
+        }
     }
 }
